@@ -1,0 +1,66 @@
+[
+  {
+    "id": "1",
+    "title": "Dog",
+    "description": "Cute dog",
+    "imageUrl": "https://placedog.net/400",
+    "createdAt": "2024-01-01",
+    "size": 200
+  },
+  {
+    "id": "2",
+    "title": "Cat",
+    "description": "Lovely cat",
+    "imageUrl": "https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg",
+    "createdAt": "2024-02-01",
+    "size": 150
+  },
+    {
+    "id": "3",
+    "title": "Dog",
+    "description": "Cute dog",
+    "imageUrl": "https://placedog.net/400",
+    "createdAt": "2024-01-01",
+    "size": 200
+  },
+  {
+    "id": "4",
+    "title": "Cat",
+    "description": "Lovely cat",
+    "imageUrl": "https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg",
+    "createdAt": "2024-02-01",
+    "size": 150
+  },
+    {
+    "id": "5",
+    "title": "Dog",
+    "description": "Cute dog",
+    "imageUrl": "https://placedog.net/400",
+    "createdAt": "2024-01-01",
+    "size": 200
+  },
+  {
+    "id": "6",
+    "title": "Cat",
+    "description": "Lovely cat",
+    "imageUrl": "https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg",
+    "createdAt": "2024-02-01",
+    "size": 150
+  },
+    {
+    "id": "7",
+    "title": "Dog",
+    "description": "Cute dog",
+    "imageUrl": "https://placedog.net/400",
+    "createdAt": "2024-01-01",
+    "size": 200
+  },
+  {
+    "id": "8",
+    "title": "Cat",
+    "description": "Lovely cat",
+    "imageUrl": "https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg",
+    "createdAt": "2024-02-01",
+    "size": 150
+  }
+]
