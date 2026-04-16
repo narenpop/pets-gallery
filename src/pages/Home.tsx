@@ -31,20 +31,18 @@ const pageVariants = {
 };
 export default function Home() {
   const { data, loading, error } = usePets();
- 
   const [selectedPets, setSelectedPets] = useState<string[]>([]);
-
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("");
   const navigate = useNavigate();
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
-  if (!data.length) return <p>No pets found</p>;
 
   const filtered = data.filter(
     (p) =>
       p.title.toLowerCase().includes(search.toLowerCase()) ||
+      p.breed.toLowerCase().includes(search.toLowerCase()) ||
       p.description.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -56,23 +54,24 @@ export default function Home() {
     return 0;
   });
   const toggleSelect = (id: string) => {
-  setSelectedPets((prev) =>
-    prev.includes(id)
-      ? prev.filter((petId) => petId !== id)
-      : [...prev, id]
-  );
-};
+    setSelectedPets((prev) =>
+      prev.includes(id)
+        ? prev.filter((petId) => petId !== id)
+        : [...prev, id]
+    );
+  };
+
   const selectedItems = sorted.filter((pet) =>
-  selectedPets.includes(pet.id)
-);
+    selectedPets.includes(pet.id)
+  );
 
-const dogCount = selectedItems.filter((pet) =>
-  pet.title.toLowerCase().includes("dog")
-).length;
+  const dogCount = selectedItems.filter((pet) =>
+    pet.title.toLowerCase().includes("dog")
+  ).length;
 
-const catCount = selectedItems.filter((pet) =>
-  pet.title.toLowerCase().includes("cat")
-).length;
+  const catCount = selectedItems.filter((pet) =>
+    pet.title.toLowerCase().includes("cat")
+  ).length;
 
   return (
     <motion.div
@@ -80,22 +79,30 @@ const catCount = selectedItems.filter((pet) =>
       animate="animate"
       exit="exit"
       variants={pageVariants}
-      className="flex flex-col gap-4 justify-center items-center p-4"
+      className="flex flex-col gap-4 justify-center items-center p-4 pb-10"
     >
-      <div className="flex flex-col gap-4 justify-center items-center p-4 mt-20">
-        <h1 className="text-5xl">Welcome to the Pets Gallery</h1>
-        <p className="text-lg mt-2">Discover a delightful collection of pets waiting for their forever homes. From playful puppies to cuddly kittens, our gallery showcases a variety of adorable animals looking for love and companionship. Browse through our selection and find your new best friend today!</p>
+      <div className="mt-20 flex max-w-5xl flex-col gap-4 rounded-2xl bg-white/85 p-6 text-center shadow-lg backdrop-blur-sm">
+        <h1 className="text-5xl font-semibold text-slate-900">
+          Welcome to the Pets Gallery
+        </h1>
+        <p className="text-lg text-slate-700">
+          Discover a delightful collection of pets waiting for their forever
+          homes. From playful puppies to cuddly kittens, our gallery showcases
+          a variety of adorable animals looking for love and companionship.
+          Browse through our selection and find your new best friend today.
+        </p>
       </div>
 
       <input
-        placeholder="Search..."
+        placeholder="Search by type, breed, or description..."
         onChange={(e) => setSearch(e.target.value)}
-        className="w-full max-w-md p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="w-full max-w-md rounded-md border border-gray-300 bg-white p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
 
-      <select onChange={(e) => setSort(e.target.value)}
-        className="w-full max-w-md p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
+      <select
+        onChange={(e) => setSort(e.target.value)}
+        className="w-full max-w-md rounded-md border border-gray-300 bg-white p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
         <option value="">Sort</option>
         <option value="A-Z">Name A-Z</option>
         <option value="Z-A">Name Z-A</option>
@@ -103,53 +110,61 @@ const catCount = selectedItems.filter((pet) =>
         <option value="OLD">Oldest</option>
       </select>
 
-      <p className="text-cyan-500">
-  Selected: {selectedPets.length} | 🐶 Dogs: {dogCount} | 🐱 Cats: {catCount}
-</p>
-
-     <Button
-  variant="contained"
-  onClick={() => setSelectedPets(sorted.map((pet) => pet.id))}
->
-  Select All
-</Button>
-
-<Button
-  variant="contained"
-  color="secondary"
-  onClick={() => setSelectedPets([])}
->
-  Clear
-</Button>
-   <Grid>
-  {sorted.map((pet) => {
-    const isSelected = selectedPets.includes(pet.id);
-
-    return (
-      <div
-        key={pet.id}
-        className={`relative cursor-pointer ${
-          isSelected ? "ring-4 ring-blue-400 rounded-lg" : ""
-        }`}
-      >
-        {/* Checkbox → ONLY select */}
-        <input
-          type="checkbox"
-          checked={isSelected}
-          onChange={() => toggleSelect(pet.id)}
-          onClick={(e) => e.stopPropagation()} // 🔥 important
-          className="absolute top-2 left-2 z-10 w-4 h-4"
-        />
-
-        {/* Card click → NAVIGATE */}
-        <div onClick={() => navigate(`/pet/${pet.id}`)}>
-          <PetCard pet={pet} />
-        </div>
+      <div className="flex items-center gap-4 text-cyan-100">
+        <p className="rounded-full bg-slate-900/80 px-4 py-2 text-sm">
+          Selected: {selectedPets.length} | Dogs: {dogCount} | Cats: {catCount}
+        </p>
+        <Button
+          variant="contained"
+          onClick={() => setSelectedPets(sorted.map((pet) => pet.id))}
+        >
+          Select All
+        </Button>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={() => setSelectedPets([])}
+        >
+          Clear
+        </Button>
       </div>
-    );
-  })}
-</Grid>
-      <footer className="text-sm text-gray-500 mt-8 mb-4 *:text-center" >
+
+      {!sorted.length ? (
+        <div className="rounded-xl bg-white/85 px-6 py-10 text-center shadow-lg">
+          <p className="text-lg font-medium text-slate-800">No pets found.</p>
+          <p className="text-sm text-slate-600">
+            Try a different search or add a new pet from the dashboard.
+          </p>
+        </div>
+      ) : (
+        <Grid>
+          {sorted.map((pet) => {
+            const isSelected = selectedPets.includes(pet.id);
+
+            return (
+              <div
+                key={pet.id}
+                className={`relative cursor-pointer ${
+                  isSelected ? "rounded-lg ring-4 ring-blue-400" : ""
+                }`}
+              >
+                <input
+                  type="checkbox"
+                  checked={isSelected}
+                  onChange={() => toggleSelect(pet.id)}
+                  onClick={(e) => e.stopPropagation()}
+                  className="absolute left-3 top-3 z-10 h-4 w-4"
+                />
+                <div onClick={() => navigate(`/pet/${pet.id}`)}>
+                  <PetCard pet={pet} />
+                </div>
+              </div>
+            );
+          })}
+        </Grid>
+      )}
+
+      <footer className="mt-8 mb-4 text-center text-sm text-white">
         &copy; 2024 Pets Gallery. All rights reserved.
       </footer>
     </motion.div>

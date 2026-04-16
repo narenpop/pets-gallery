@@ -1,37 +1,44 @@
+import type { Pet } from "../types/pet";
 import { useFavorites } from "../context/FavoritesContext";
 
-export default function PetCard({ pet }) {
+interface PetCardProps {
+  pet: Pet;
+}
+
+const PetCard = ({ pet }: PetCardProps) => {
   const { addFavorite, removeFavorite, isFavorite } = useFavorites();
 
   const favorite = isFavorite(pet.id);
 
-  const handleClick = () => {
-    if (favorite) {
-      removeFavorite(pet.id);
-    } else {
-      addFavorite(pet);
-    }
-  };
-
   return (
-    <div className="relative w-72 h-48 rounded-xl overflow-hidden shadow-lg">
+    <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
       <img
         src={pet.imageUrl}
-        alt={pet.name}  
-        className="w-full h-full object-cover"
+        alt={pet.title}
+        className="h-56 w-full object-cover"
       />
+      <div className="space-y-3 p-4">
+        <div>
+          <h3 className="text-xl font-semibold text-slate-900">{pet.title}</h3>
+          <p className="text-sm text-slate-600">{pet.breed}</p>
+        </div>
+        <p className="line-clamp-3 text-sm text-slate-700">{pet.description}</p>
 
-      {/* ❤️ Button */}
-      <button
-        onClick={handleClick}
-        className="absolute top-2 right-2 bg-white/80 p-2 rounded-full"
-      >
-        {favorite ? "❤️" : "🤍"}
-      </button>
-
-      <div className="absolute bottom-0 w-full p-3 bg-black/50 text-white">
-        {pet.name}
+        <button
+          onClick={(e) => {
+            // Prevent the parent card click (navigation) when favoriting.
+            e.stopPropagation();
+            favorite ? removeFavorite(pet.id) : addFavorite(pet);
+          }}
+          className={`rounded-md px-4 py-2 text-sm font-medium text-white ${
+            favorite ? "bg-rose-500" : "bg-slate-800"
+          }`}
+        >
+          {favorite ? "Remove Favorite" : "Add Favorite"}
+        </button>
       </div>
     </div>
   );
-}
+};
+
+export default PetCard;

@@ -2,64 +2,72 @@
   {
     "id": "1",
     "title": "Dog",
+    "breed": "Golden Retriever",
     "description": "Cute dog",
-    "imageUrl": "https://placedog.net/400",
+    "imageUrl": "https://images.dog.ceo/breeds/retriever-golden/n02099601_3004.jpg",
     "createdAt": "2024-01-01",
     "size": 200
   },
   {
     "id": "2",
     "title": "Cat",
+    "breed": "British Shorthair",
     "description": "Lovely cat",
-    "imageUrl": "https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg",
+    "imageUrl": "https://cdn2.thecatapi.com/images/MTY3ODIyMQ.jpg",
     "createdAt": "2024-02-01",
     "size": 150
   },
     {
     "id": "3",
     "title": "Dog",
+    "breed": "Siberian Husky",
     "description": "Cute dog",
-    "imageUrl": "https://placedog.net/400",
+    "imageUrl": "https://images.dog.ceo/breeds/husky/n02110185_1469.jpg",
     "createdAt": "2024-01-01",
     "size": 200
   },
   {
     "id": "4",
     "title": "Cat",
+    "breed": "Maine Coon",
     "description": "Lovely cat",
-    "imageUrl": "https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg",
+    "imageUrl": "https://cdn2.thecatapi.com/images/a2I4o.jpg",
     "createdAt": "2024-02-01",
     "size": 150
   },
     {
     "id": "5",
     "title": "Dog",
+    "breed": "Beagle",
     "description": "Cute dog",
-    "imageUrl": "https://placedog.net/400",
+    "imageUrl": "https://images.dog.ceo/breeds/beagle/n02088364_11136.jpg",
     "createdAt": "2024-01-01",
     "size": 200
   },
   {
     "id": "6",
     "title": "Cat",
+    "breed": "Bengal",
     "description": "Lovely cat",
-    "imageUrl": "https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg",
+    "imageUrl": "https://cdn2.thecatapi.com/images/O3btzLlsO.png",
     "createdAt": "2024-02-01",
     "size": 150
   },
     {
     "id": "7",
     "title": "Dog",
+    "breed": "Shiba Inu",
     "description": "Cute dog",
-    "imageUrl": "https://placedog.net/400",
+    "imageUrl": "https://images.dog.ceo/breeds/shiba/shiba-18.jpg",
     "createdAt": "2024-01-01",
     "size": 200
   },
   {
     "id": "8",
     "title": "Cat",
+    "breed": "Siamese",
     "description": "Lovely cat",
-    "imageUrl": "https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg",
+    "imageUrl": "https://cdn2.thecatapi.com/images/ai6Jps4sx.jpg",
     "createdAt": "2024-02-01",
     "size": 150
   }
